@@ -1,0 +1,85 @@
+create backend 
+
+npm init -y
+npm i mongoose express cors 
+npm i --save-dev nodemon
+
+cd ..
+npm create vite@latest
+project name: frontend
+cd frontend
+npm install
+
+cd ..
+cd backend
+create index.js
+inside backend package.json "type": "module" below  main:index etc etc
+
+inside index.js:
+
+    import express from "express";
+    import cors from 'cors'
+
+
+    const app = express();
+    app.use(cors())
+
+    app.get("/",(req,res)=>{
+        res.json({message:"Hello"});
+    })
+
+    app.listen(8000,()=>{
+        console.log("Server started at port 8000");
+    })
+
+
+
+inside package.json of backend
+
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev":"nodemon index.js",
+        "start":"node index.js"
+    },
+
+CHECK IF SERVER IS WORKING cd backend; npm run dev
+
+
+inside package.json of frontend
+
+    "scripts": {
+        "dev": "vite --port 3000",
+        "build": "vite build",
+        "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+        "preview": "vite preview"
+    },
+
+
+create vercel.json file in default dir
+
+{
+    "buildCommand":"cd frontend && npm install && npm run build",
+    "outputDirectory":"frontend/dist",
+    "framework":"vite",
+    "rewrites":[
+        {
+            "source":"/api/(.*)",
+            "destination":"/api/index.js"
+        }
+    ]
+}
+
+cd frontend 
+npm run build
+
+
+GITHUB:
+
+
+git init
+git status
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin 'your git repo link'
+git push -u origin main
