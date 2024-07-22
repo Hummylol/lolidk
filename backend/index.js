@@ -1,12 +1,14 @@
-import express from "express";
+import Express from "express";
 import cors from 'cors'
 
 
-const app = express();
-app.use(cors())
+const app = Express();
+app.use(cors());
 
-app.get("/api/auth",(req,res)=>{
-    res.json({message:"Hello people"})
+app.get("/api/hello/",(req,res)=>{
+    res.json({
+        message:"Hello people"
+    });
 })
 
 app.listen(8000,()=>{
